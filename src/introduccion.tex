@@ -1,0 +1,112 @@
+\frame
+{
+\frametitle{Introducción}
+\framesubtitle{\oran{Problema de n-cuerpos}}
+\begin{block}{Definición}
+    Predecir el \underline{movimiento} de un grupo de \underline{objetos celestes},
+    que van \underline{interactuando} unos con otros gravitacionalmente.
+\end{block}
+}
+
+\frame
+{
+\frametitle{Introducción}
+\framesubtitle{\oran{Secciones críticas}}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item Posiciones iniciales.
+            \begin{itemize}
+                \item Random.
+                \item Plummer Model.
+            \end{itemize}
+            \item Método de integración.
+            \begin{itemize}
+                \item Euler.
+                \item Leapfrog.
+                \item Runge Kutta.
+                \item Two step Adams-Bashworth.
+                \item etc.
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item Cálculo de las fuerzas.
+            \begin{itemize}
+                \item Particle-Particle. \blue{$O(n^2)$}
+                \item Particle-Mesh.  \blue{$O(n + ng\log ng)$}
+                \item \red{Treecode.} \blue{$O(n\log n)$}
+                \item Multipole. \blue{$O(n)$}
+                \item etc.
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+\end{columns}
+}
+
+\frame
+{
+\frametitle{Introducción}
+\framesubtitle{\oran{Algoritmo General}}
+
+\begin{itemize}
+    \item Cálculo de la fuerza.
+    \begin{itemize}
+        \item Posiciones iniciales $x_i$.
+        \item Velocidades iniciales $v_i$.
+        \item $1 \leq i \leq N$
+    \end{itemize}
+    $$f_{ij} =G \cdot \frac{m_i \cdot m_j}{||r_{ij}||^{2}} \cdot \frac{r_{ij}}{||r_ij||}$$
+    \begin{itemize}
+        \item $m_i$ y $m_j$ masas de los cuerpos $i$ y $j$.
+        \item $r_{ij} = (x_j - x_i )$ vector de distancia entre los cuerpos $i$ y $j$.
+        \item $G$, constante gravitacional. ($6,67428 \times 10^{-11} m^{3} kg^{-1} s^{-2}$)
+    \end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Introducción}
+\framesubtitle{\oran{Tree-code}}
+
+\begin{center}
+	``A Hierarchical O(N log N) Force Calculation Algorithm'', Josh Barnes \& Piet Hut, 1986. Nature 324, 446.
+\end{center}
+\begin{itemize}
+	\item Joshua Edward Barnes
+	\begin{itemize}
+		\item Faculty member at the Institute for Astronomy (IfA), University of Hawaii.
+	\end{itemize}
+	\item Piet Hut
+	\begin{itemize}
+		\item Professor of Interdisciplinary Studies, Institute for Advanced Study.
+	\end{itemize}
+\end{itemize}
+}
+
+%% 1986
+%Here we describe a novel method of directly calculating the force on N bodies that grows only as N log N.
+%The technique uses a tree-structured hierarchical subdivision of space into cubic cells,
+%each of which is recursively divided into eight subcells whenever more than one particle is found to occupy the same cell.
+%This tree is constructed anew at every time step, avoiding ambiguity and tangling.
+%Advantages over potential-solving codes are:
+%	accurate local interactions;
+%	freedom from geometrical assumptions and restrictions;
+%	and applicability to a wide class of systems, including (proto-)planetary, stellar, galactic and cosmological ones.
+%Advantages over previous hierarchical tree-codes include simplicity and the possibility of rigorous analysis of error.
+%Although we concentrate here on stellar dynamical applications, our techniques of efficiently handling a large number
+%of long-range interactions and concentrating computational effort where most needed have potential applications in
+%other areas of astrophysics as well.
+%%%%
+%The Barnes–Hut simulation (Josh Barnes and Piet Hut) is an algorithm for performing an n-body simulation. It is notable for having order O(n log n) compared to a direct-sum algorithm which would be O(n2).
+%The simulation volume is usually divided up into cubic cells via an octree (in a 3-dimension space), so that only particles from nearby cells need to be treated individually, and particles in distant cells can be treated as a single large particle centered at its center of mass (or as a low-order multipole expansion). This can dramatically reduce the number of particle pair interactions that must be computed. To prevent the simulation from becoming swamped by computing particle-particle interactions, the cells must be refined to smaller cells in denser parts of the simulation which contain many particles per cell.
+%%%%
+%
+%The Barnes-Hut (1986) algorithm works by grouping particles using a hierarchy of cubes arranged in oct-tree structure i.e. each node in the tree has 8 siblings. The system is first surrounded by a single cube or cell encompassing all of the particles. This main cell is subdivided into 8 subcells, each containing their own subset of the particles. The tree structure continues down in scale until cells contain only 1 particle. For each cell or node in the tree, we calculate the total mass, center of mass and higher order multipole moments (typically only up to quadrupole order). This tree structure can be built very rapidly making it feasible to rebuild it at each time step. The tree can be constructed bottom-up i.e. by inserting one particle at a time (Barnes & Hut 1986) or top-down by sorting particles across divisions. Both methods take  time and in practice only a few percent of total time per step.
+%
+%The force on a particle in the system can be evaluated by ``walking'' down the tree level by level beginning with the top cell. At each level, a cell is added to an interaction list if the cell is distant enough for a force evaluation. If the cell is too close, it is ``opened'' and the 8 subcells are either used for the force evaluation or opened further. The walk ends when all cells which pass the opening test and any single particles are acquired. The accumulated list of interacting cells and particles is then looped through to calculate the force on the given particle and this amounts to the bulk of the computation. In this way, the number of interactions computed is significantly smaller than a direct N-body method with the number scaling as   (Barnes & Hut 1986). Typically, there are   interactions per particle on average in a simulation with   particles making the algorithm significantly faster than a direct summation method.
+%
+%%%%
+%
