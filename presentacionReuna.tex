@@ -1,0 +1,55 @@
+%%% Esqueleto base de la presentacion
+%%% No agregar las paginas con un include
+%%% Lo que quieran aportar deben ser usuarios del TRAC
+
+\documentclass{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{pgf}
+
+\definecolor{red}{RGB}{255,0,0}
+\definecolor{green}{RGB}{0,255,0} 
+\definecolor{blue}{RGB}{0,0,255} 
+\definecolor{oran}{RGB}{255,93,0} 
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\oran}{\textcolor{oran}}
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=img/logos,% Logo for the first page.
+          watermark=img/cti_hpc-500-off,% Watermark used in every page.
+          watermarkheight=50px,% Height of the watermark.
+          watermarkheightmult=1,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          ]{Torino}
+
+\usecolortheme{nouvelle}
+\vspace{-0.5cm}
+\author[R.Pezoa]{\large Raquel Pezoa\\\normalsize \textcolor{gray}{raquel.pezoa@usm.cl}}
+\title[CTI-HPC]{\huge Center of Technological Innovation in High Performance Computing}
+\subtitle{ Universidad Técnica\\ Federico Santa María}
+\institute{\oran{Encuentro Capacidades de Cómputo para la Investigación en Chile} \\ REUNA, Santiago, Chile}
+\date{17 de Enero 2012}
+
+\pgfdeclareimage[width=4.5cm]{bari}{img/edificioBari}
+\pgfdeclareimage[width=5.5cm]{utfsm}{img/utfsm}
+
+\begin{document}
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+\include{src/historia}
+\include{src/equipo}
+\include{src/areas}
+\include{src/infraestructura}
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+\end{document}
