@@ -2,35 +2,41 @@
 {
 \frametitle{Infraestructura}
 \framesubtitle{\oran{Data Center}}
+\begin{figure}
+	\includegraphics[scale=0.8]{img/cti_hpc_data_center}
+\end{figure}
+}
+
+
+\frame
+{
+\frametitle{Infraestructura}
+\framesubtitle{\oran{Data Center}}
 El Data Center cuenta con 2 \emph{Clusters} y 4 Nodos GPU con las siguientes características:
 \begin{table}[h]
 \centering
-\scalebox{0.7}{
-  \begin{tabular}{|c|l|l|l|}
+\scalebox{0.65}{
+	\begin{tabular}{|c|l|l|l|}
 		\hline
-					 & \textbf{Cluster 1} 		& \textbf{Cluster 2}		& \textbf{Nodos GPU} 		\\
+						 & \textbf{Cluster 1} 		& \textbf{Cluster 2}		& \textbf{Nodos GPU} 	\\
 		\hline
-		\textbf{Nodos} 		 &12				&16				&4			\\
+		\textbf{Nodes} 		 	&12				&16				&4			\\
 		\hline
-		\textbf{CPU}		 &Dual Xeon 5110 1.60 GHz	&Dual Xeon X5560 2.8 GHz	&Dual Xeon E5520 2.27GHz\\
+		\textbf{CPU}		 	&Dual Xeon 5110 1.60 GHz	&Dual Xeon X5560 2.8 GHz	&Dual Xeon E5520 2.27GHz\\
 		\hline
-		\textbf{RAM}		 &4GB				&16GB				&24GB			\\
+		\textbf{Physical Cores}		&24 				&128				&1376			\\
 		\hline
-		\textbf{Storage}	 &12TB				&48TB				&250GB			\\
+		\textbf{Logical Cores}		&48 				&256				&1376			\\
 		\hline
-		\textbf{GPU}		 &-				&-				&Tesla M2050		\\
+		\textbf{RAM}		 	&4GB				&16GB				&24GB			\\
+		\hline
+		\textbf{Storage}	 	&12TB				&48TB				&250GB			\\
+		\hline
+		\textbf{GPU}		 	&-				&-				&Tesla M2050, C1060	\\
 		\hline
 	\end{tabular}}
 \caption{Características de los equipos}
 \end{table}
-%\begin{columns}
-%\column{0.5 \textwidth}
-%\begin{itemize}
-%\item Actualmente se cuenta con dos \emph{Clusters} y 4 Nodos \emph{GPU}.
-%\end{itemize}
-%\column{0.5\textwidth}
-%\pgfuseimage{utfsm}
-%\end{columns}
 }
 
 \frame
@@ -55,6 +61,10 @@ que cuenta con las siguientes características.
 		\hline
 		\textbf{CPU}		 &Dual Xeon X5675 3.06GHz		\\
 		\hline
+		\textbf{Physical Cores}  &144					\\
+		\hline
+		\textbf{Logical Cores}	 &288					\\
+		\hline
 		\textbf{RAM}		 &32GB					\\
 		\hline
 		\textbf{Storage}	 &48TB					\\
@@ -64,4 +74,3 @@ que cuenta con las siguientes características.
 \end{table}
 
 }
-
